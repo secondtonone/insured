@@ -20,23 +20,3 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
 }
-
-.segment-control {
-  --tgui--font-family: 'Inter', sans-serif;
-  --tgui--caption1--font_size: 14px;
-  --tgui--text_color: #2c2f38;
-}
-
-.segment-control > div > div {
-  border-radius: 0.375rem !important;
-}
-
-.accordion {
-  --tgui--font-family: 'Inter', sans-serif;
-}
-
-.accordion svg {
-  color: #2C2F38;
-}
-
-@media (prefers-color-scheme: dark) {}

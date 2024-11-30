@@ -1,56 +1,48 @@
 import { useState, type FC } from 'react';
 
 import { Page } from '@/app/layouts';
-import { HelpIcon } from '@/shared';
-import { DisplayData } from '@/shared/ui/DisplayData/DisplayData';
-import { List, SegmentedControl } from '@telegram-apps/telegram-ui';
-import { SegmentedControlItem } from '@telegram-apps/telegram-ui/dist/components/Navigation/SegmentedControl/components/SegmentedControlItem/SegmentedControlItem';
+import { InsuranceOptions, InsuranceOptionsProps } from '@/features';
+import { FAQPanel } from '@/shared';
+import { Avatar, Cell, List } from '@telegram-apps/telegram-ui';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-
-const tabs = [
-  {
-    id: 'buy',
-    title: 'Buy cover',
-  },
-  {
-    id: 'my',
-    title: 'My covers',
-  },
-] as const;
-
 
 export const IndexPage: FC = () => {
-  const [currentTab, setCurrentTab] = useState<'buy' | 'my'>('buy');
+  const [currentTab, setCurrentTab] = useState<InsuranceOptionsProps['currentTab']>('buy');
   const { t } = useTranslation();
 
   return (
     <Page>
-      <Link to="/faq" className="px-4 py-2.5 bg-transparent rounded-xl shadow border border-whity justify-between items-center flex">
-        <div className="text-black dark:text-white text-sm font-semibold">{t('FAQ')}</div>
-        <div className="text-black dark:text-white"><HelpIcon /></div>
-      </Link>
+      <FAQPanel />
 
-      <SegmentedControl className="segment-control !rounded-md !p-1 !bg-gray_light">
-        {tabs.map(({ id, title }) => (
-          <SegmentedControlItem
-            className="*:!leading-none *:!text-sm *:!font-medium !py-1"
-            onClick={() => setCurrentTab(id)}
-            selected={currentTab === id}
-          >
-            {t(title)}
-          </SegmentedControlItem>
-        ))}
-      </SegmentedControl>
+      <InsuranceOptions currentTab={currentTab} setCurrentTab={setCurrentTab} />
 
-      <List>
-        <DisplayData
-          rows={[
-            { title: 'tgWebAppPlatform', value: 'val' },
-            { title: 'tgWebAppShowSettings', value: 'val2' },
-          ]}
-        />
-      </List>
+      {currentTab === 'buy' ? <List>
+        <Cell
+          className="bg-white dark:bg-black rounded-xl shadow border border-whity"
+          after={'14 %'}
+          before={<Avatar size={48} />}
+          description="Max 250k USDT"
+        >
+          Euler Finance v2
+        </Cell>
+        <Cell
+          className="bg-white dark:bg-black rounded-xl shadow border border-whity"
+          after={'14 %'}
+          before={<Avatar size={48} />}
+          description="Max 180k USDT"
+        >
+          Base DeFi Pass
+        </Cell>
+      </List> : <List>
+        <Cell
+          className="bg-white dark:bg-black rounded-xl shadow border border-whity"
+          after={'20 days'}
+          before={<Avatar size={48} />}
+          description="10 000.18 USDT"
+        >
+          Liquid Collective
+        </Cell>
+      </List>}
     </Page >
   );
 };
