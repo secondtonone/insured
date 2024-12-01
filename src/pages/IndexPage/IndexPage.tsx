@@ -47,16 +47,24 @@ export const IndexPage: FC = () => {
   const [userInsurance, setUserInsurance] = useState<Insurance>([] as Insurance);
   const [insurance, setInsurance] = useState<Insurance>([] as Insurance);
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setError] = useState(false);
 
-  useEffect(() => {
-    const handler = async () => {
-      setIsLoading(true);
+  const handler = async () => {
+    setIsLoading(true);
+    setError(false);
+    try
+    {
       const insurances = await getInsurances();
 
-      setIsLoading(false);
       setInsurance(insurances);
+    } catch (error)
+    {
+      setError(true);
     }
+    setIsLoading(false);
+  }
 
+  useEffect(() => {
     handler();
   }, []);
 
@@ -67,7 +75,7 @@ export const IndexPage: FC = () => {
 
       <InsuranceOptions currentTab={currentTab} setCurrentTab={setCurrentTab} />
 
-      {currentTab === 'buy' ? <InsuranceList content={insurance} isLoading={isLoading} /> : <InsuranceList content={userInsurance} onErrorComponent={() => <Button size="l" stretched className="!rounded-full !font-inter !max-w-md">
+      {currentTab === 'buy' ? <InsuranceList content={insurance} isLoading={isLoading} isError={isError} /> : <InsuranceList content={userInsurance} onErrorComponent={() => <Button onClick={handler} size="l" stretched className="!rounded-full !font-inter !max-w-md">
         {t('Try again')}
       </Button>} onEmptyComponent={() => <Button onClick={() => setCurrentTab('buy')} size="l" stretched className="!rounded-full !font-inter !max-w-md">
         {t('Select insurance')}
