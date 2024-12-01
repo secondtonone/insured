@@ -67,7 +67,7 @@ export const InsuranceList: FC<InsuranceListProps> = ({ content, isError, isLoad
         </Placeholder>
         {onErrorComponent ? <FixedLayout vertical="bottom" style={{
           padding: 16
-        }}>
+        }} className="flex items-center justify-center">
           {onErrorComponent()}
         </FixedLayout> : null}
       </div>
@@ -87,7 +87,7 @@ export const InsuranceList: FC<InsuranceListProps> = ({ content, isError, isLoad
     </Placeholder>
     {onEmptyComponent ? <FixedLayout vertical="bottom" style={{
       padding: 16
-    }}>
+    }} className="flex items-center justify-center">
       {onEmptyComponent()}
     </FixedLayout> : null}
   </div>)

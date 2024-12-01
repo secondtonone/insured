@@ -67,9 +67,9 @@ export const IndexPage: FC = () => {
 
       <InsuranceOptions currentTab={currentTab} setCurrentTab={setCurrentTab} />
 
-      {currentTab === 'buy' ? <InsuranceList content={insurance} isLoading={isLoading} /> : <InsuranceList content={userInsurance} onErrorComponent={() => <Button size="l" stretched className="!rounded-full !font-inter">
+      {currentTab === 'buy' ? <InsuranceList content={insurance} isLoading={isLoading} /> : <InsuranceList content={userInsurance} onErrorComponent={() => <Button size="l" stretched className="!rounded-full !font-inter !max-w-md">
         {t('Try again')}
-      </Button>} onEmptyComponent={() => <Button onClick={() => setCurrentTab('buy')} size="l" stretched className="!rounded-full !font-inter">
+      </Button>} onEmptyComponent={() => <Button onClick={() => setCurrentTab('buy')} size="l" stretched className="!rounded-full !font-inter !max-w-md">
         {t('Select insurance')}
       </Button>} />
       }
