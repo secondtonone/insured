@@ -112,6 +112,7 @@ export const TONConnectPage: FC = () => {
   useEffect(() => {
     const handler = async () => {
       const event = await fetchAccountEvents(userFriendlyAddress);
+      // @ts-expect-error
       setEvents(event);
     };
 
@@ -204,6 +205,7 @@ export const TONConnectPage: FC = () => {
           rows={nfts.map((nft) => ({
             title: nft.metadata.name,
             value: nft.metadata.description,
+            // @ts-expect-error
             src: nft.previews[1].url,
           }))}
         />

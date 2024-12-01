@@ -25,9 +25,9 @@ export function Page({
  */
   return (
     <main className="flex flex-col h-screen w-full justify-start items-center text-blacky bg-white dark:bg-black dark:text-white">
-      <div className="max-w-md w-full">
+      <div className="max-w-md w-full h-full">
         {hideHeader ? null : <Header />}
-        <div className="p-4 py-3 flex flex-col gap-4">
+        <div className="p-4 py-3 flex flex-col gap-4 h-full">
           {children}
         </div>
       </div>

@@ -24,7 +24,6 @@ export interface InsuranceOptionsProps {
   setCurrentTab: (tab: Tab) => void;
 }
 
-
 export const InsuranceOptions: FC<InsuranceOptionsProps> = ({
   currentTab,
   setCurrentTab
@@ -32,7 +31,7 @@ export const InsuranceOptions: FC<InsuranceOptionsProps> = ({
   const { t } = useTranslation();
 
   return (
-    <SegmentedControl className={`${s.segmentControl} !rounded-md !p-1 !bg-gray_light dark:!bg-gray_dark`
+    <SegmentedControl className={`${s.segmentControl} !rounded-md !p-1 !bg-gray_light dark:!bg-gray_dark !max-h-[42px]`
     }>
       {
         tabs.map(({ id, title }) => (

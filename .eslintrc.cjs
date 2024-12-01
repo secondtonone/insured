@@ -36,5 +36,6 @@ module.exports = {
   ],
   rules: {
     'react/react-in-jsx-scope': 0,
+    "max-len": [ "warn", { "code": 80, "ignoreStrings": true, "ignoreTemplateLiterals": true } ]
   }
 };
